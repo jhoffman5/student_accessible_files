@@ -35,10 +35,12 @@ PAY ATTENTION - many of you will screw managing the memory for
 the client datagram.
 */
 
+#include <stdint.h>
+
 struct ClientDatagram
 {
-	unsigned int sequence_number;
-	unsigned short payload_length;
+	uint32_t sequence_number;
+	uint16_t  payload_length;
 	char payload[];
 };
 
@@ -55,7 +57,7 @@ my example, the right value is 19.
 
 struct ServerDatagram
 {
-	unsigned int sequence_number;
-	unsigned short datagram_length;
+	uint32_t  sequence_number;
+	uint16_t  datagram_length;
 };
 
