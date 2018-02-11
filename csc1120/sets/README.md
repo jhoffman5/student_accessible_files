@@ -1,9 +1,5 @@
 **All repos must be private**
 
-# Warning
-
-ON WINDOWS - DON'T RENAME MAPS TO SETS - VISUAL STUDIO WILL LOSE ITS LUNCH
-
 # The set container
 
 You have used one ```Standard Template Library``` container quite a lot: ```vector```.
