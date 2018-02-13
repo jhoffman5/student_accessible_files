@@ -5,7 +5,86 @@ and run then against your tests and my *grading* scripts.
 
 There is *no* programming needed in this project. In short, it is a gimmie.
 
-# Sample output
+# What you are to do
+
+Even though there is no coding in this project, you do have things to do:
+* Comb over every word in main.s and every instruction.
+* Thoroughly absorb and understand what you find.
+* Practice building an assembly language program.
+* Practice using GDB.
+* Practice using valgrind.
+* Practice running my test scripts.
+
+# Building the program
+
+Without debugging support:
+
+```gcc main.s```
+
+With debugging support:
+
+```gcc -g main.s```
+
+Both produce ```a.out```.
+
+# Running the program
+
+When in the diretory where the program is:
+
+```./a.out```
+
+# Running the tests
+
+This has my user name. Yours will be used for you.
+
+
+```
+/home/2510/2510.sh -p p1
+Results will be written to /tmp/pkivolowitz_2510.txt
+Overwrite output (Y|N) [N]? 
+Y
+Attempting: /home/2510/tests/p1/test_1.sh
+Attempting: /home/2510/tests/p1/test_2.sh
+Attempting: /home/2510/tests/p1/test_3.sh
+Attempting: /home/2510/tests/p1/test_4.sh
+```
+
+# Seeing the results of the test
+
+Replace my user name with your user name:
+
+```
+cat /tmp/pkivolowitz_2510.txt 
+Tue Feb 13 07:07:32 CST 2018
+Working on p1
+
+Entering /home/pkivolowitz/comporg/projects/p1
+Build SUCCEEDED
+-rwxrwxr-x 1 pkivolowitz pkivolowitz 10208 Feb 13 07:07 a.out
+
+Test 01 - presence of puts call
+	bl	puts			// Call puts. puts() is coming from the C runtime library which is 
+SUCCEEDED
+
+Test 02 - deprecated
+SUCCEEDED
+
+Test 03 - enough comments
+21 Comments
+SUCCEEDED
+
+Test 04 - Testing for correct output as per /home/2510/tests/p1/correct_output_01.txt
+Expected result - must match letter for letter:
+Hello, world! (From ARMV8 - 64 bit - assembly language)
+Your output:
+Hello, world! (From ARMV8 - 64 bit - assembly language)
+SUCCEEDED
+Leaving /home/pkivolowitz
+
+
+```
+
+# Sample output of the program
 
 ```
 ~/comporg/projects/p1$ ./a.out
