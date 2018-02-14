@@ -21,20 +21,23 @@ This project teaches a number of things.
 0. Systems programming.
 Systems programming is different from all the programming you may have done
 in your career so far. It is down, dirty and dangerous.
+
 1. Initializing a UDP client and server using Berkeley sockets.
 Berkeley sockets are required knowledge, in my view, if you are going to 
 learn about network programming. Modern languages have lots of higher level
 abstractions to hide the details you are learning here.
+
 2. Working with pointers, unterminated buffers and pointers. Also pointers.
 Systems programming. It's what's real. No safety nets here.
+
 3. Byte ordering differences on different architectures.
-You will code your projects on the ARM machines. You will test your client against
-your server running on the same machine. You will also test your client against my
-server running on an Intel machine.
+You will code your projects on the ARM machine and on an Intel machine. You should test Intel / Intel, Arm / Arm and Intel / Arm.
 
 You will be running on the same internal Carthage network. As such, the connections
 will appear to be more reliable than UDP really is. That's why the client is going
-to send datagrams to the server as quickly as it can. Maybe your client machine will
+to send datagrams to the server as quickly as it can. 
+
+Maybe your client machine will
 be slow (other users on it). Maybe the server machine will be slow (other users on
 it). I am hoping you will experience datagram loss.
 
@@ -51,7 +54,7 @@ Repeat, you have **NO** latitude what-so-ever in what you:
 * nothing
 
 In the event that *my* code does not adhere to this specification, the code supercedes
-the specification. Also, please let me know.
+the specification. Also, please let me know because clearly I made a mistake that I would like to fix.
 
 # Client program
 
@@ -60,7 +63,10 @@ and program function.
 
 The client program will send a fixed number of properly initialized ClientDatagram
 packets to the server. In a perfect world the client program will receive back the
-same number of ServerDatagrams. Each pair is associated with one another using a
+same number of ServerDatagrams. 
+
+Each pair (client to server datagram is expecting a matching server to client datagram)
+is associated with one another using a
 ```sequence_number``` member. As the client transmits, it memorizes that it sent that
 particular sequence number. As it receives acknowledgements, it removes its memory of
 that sequence numbers.
@@ -91,16 +97,19 @@ You will use getopt to implement command line options. These are:
 * ```-h```
 This prints the help text you will find below. Your help text must be exactly as given.
 No differences of any kind are permitted. Exit, after the help text is printed.
+
 * ```-d```
 If present, you can switch on any debugging features you might necessary. I will not
 be testing this. This is for you.
 
-If given, turns on any debugging features you wish to add. This is handy rather than
+   If given, turns on any debugging features you wish to add. This is handy rather than
 changing the program to turn on and off debugging features and having to recompile.
 In the general case, remember checking the debugging option slows down your code.
+
 * ```-s server_ip_address```
 The default server IP address is 127.0.0.1. This address is your machine. To specify
 my machine, use 10.250.0.108.
+
 * ```-p port_number```
 The default port number is 39390. If you need to override this, you can specify a 
 different port number in this way.
@@ -164,7 +173,6 @@ struct ClientDatagram
 {
 	unsigned int sequence_number;
 	unsigned short payload_length;
-	char payload[];
 };
 
 /*	Server Datagram Specification
@@ -231,12 +239,15 @@ by recvfrom.
 ## Command line options
 
 You must support the following command line options:
+
 * ```-h```
 Displays help information and exits. See additional information in the description
 of the Client program.
+
 * ```-d```
 If present, you can switch on any debugging features you might necessary. I will not
 be testing this. This is for you.
+
 * ```-p port_number```
 The default port number is 39390. If you need to override this, you can specify a 
 different port number in this way.

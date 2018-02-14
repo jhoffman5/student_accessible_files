@@ -41,7 +41,6 @@ struct ClientDatagram
 {
 	uint32_t sequence_number;
 	uint16_t  payload_length;
-	char payload[];
 };
 
 /*	Server Datagram Specification
