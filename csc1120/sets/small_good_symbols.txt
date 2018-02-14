@@ -1,0 +1,3 @@
+Foo
+i
+index_counter
