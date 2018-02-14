@@ -1,5 +1,17 @@
 **All repos must be private**
 
+# New information:
+
+Here are the small test files I used (and are used in the online tests). These will help you develop on your own computers *and* also zybooks doesn't seem to want to show these to you. *Thank you CC for pointing this out!*
+
+[an empty file](./empty.txt)
+
+[a file with bad symbols](./bad_symbols.txt)
+
+[a file with good symbols](./small_good_symbols.txt)
+
+You can download these using the right click on the link method in your browser.
+
 # The set container
 
 You have used one ```Standard Template Library``` container quite a lot: ```vector```.
