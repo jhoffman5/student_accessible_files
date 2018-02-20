@@ -20,8 +20,8 @@ three
 2. Your output must match automatic testing output letter for letter.
 3. Your code must be tight and efficient.
 To wit: In my solution I did setup in 2 assembly statements, the actual loop
-enumerating argv in 4 assembly statements and cleanup in 2 more assembly language
-statements. That's right, you can author this project in 8 lines of actual code
+enumerating argv in 4 assembly statements and cleanup in 3 more assembly language
+statements. That's right, you can author this project in 9 lines of actual code
 (plus assembly language boiler plate).
 
    **There will be a deduction if your assembly language statement count (actual 
