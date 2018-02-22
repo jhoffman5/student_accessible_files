@@ -20,7 +20,7 @@ int main(int argc, char * argv[])
 {
 	const size_t BUFFER_SIZE = 1024;
 	int udp_socket;
-	int server_port = 0;
+	short int server_port = 0;
 	struct sockaddr_in server_sockaddr;
 	struct sockaddr_in client_sockaddr;
 	unsigned char buffer[BUFFER_SIZE];
