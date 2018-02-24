@@ -27,3 +27,10 @@ A **general** video on argc and argv - not relating to 2510 specifically.
 ### for loops
 
 [for loop video](https://vimeo.com/203891390)
+
+### structs right and wrong
+
+[wrong](https://vimeo.com/205230764)
+
+[right](https://vimeo.com/205235384)
+
