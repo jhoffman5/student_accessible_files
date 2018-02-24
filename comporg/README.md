@@ -4,9 +4,11 @@
 
 ### p1
 
+p1 is [here](./projects/p1)
+
 ### p2
 
-Enumerate argv.
+Enumerate argv. p2 is [here](./projects/p2)
 
 ## Teaching materials
 
