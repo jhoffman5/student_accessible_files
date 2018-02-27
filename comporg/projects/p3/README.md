@@ -18,7 +18,7 @@ This project will be graded by my scripts. My scripts are dumb. So, you must be 
 struct Node
 {
 	struct Node * next;
-	unsigned int payload;
+	unsigned long payload;
 };
 ```
 
