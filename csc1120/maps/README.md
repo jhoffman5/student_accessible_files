@@ -63,7 +63,6 @@ It doesn't matter what the first token is (letters, numbers, etc), it is always 
 If there is a second token, it must be a number. That number is added to the previously existing value or as the first value for that key. If the second token is not a number an error message is printed then the line is ignored:
 
 ```
-apples, pears
 Second token must be a number.
 ```
 
@@ -71,46 +70,64 @@ If there is only a single token is given, the token is used as a key and it's va
 
 If more than 2 tokens are given, the input line is rejected with a message.
 
-Sample:
+Given a file with this:
 
 ```
-10,20,30
-Too many tokens: 3
-Bananas, 10
-Bananas
-Bananas             10.000000
-bananas
-bananas             undefined
-Bananas, 3.14
-Bananas
-Bananas             13.140000
-Size of map: 1
-Bananas             13.14
+good, 21
+goooood, 2
+pretty good, -10
+goooood
+goooood, 202
+pretty good, 11
 ```
 
-The first line was rejected. The second input shows adding a key and initial value. The third input shows printing out an existing key. The fourth shows the key is case sensitive and also what to do the key was not already in the map. The fifth input adds 3.14 to the existing key's value. The sixth input prints out the value of the key again. Then an end-of-file is specified causing the size and contents of the map to be printed.
+The program should output this:
+
+
+```
+goooood             2.000000
+Size of map: 3
+good                21
+goooood             204
+pretty good         1
+```
+
+In the output above, 
+
+```
+goooood             2.000000
+```
+
+is printed because ```goooood``` appears on a line of input by itself.
+
+You get:
+
+```
+pretty good         1
+```
+
+Because in the input is both of these:
+
+```
+pretty good, -10
+pretty good, 11
+```
+
+The output starting with:
+
+```
+Size of map: 3
+```
+
+is what is printed after the whole input file is read. See next.
 
 # How the programs ends
 
-When running non-interactively (like on zylabs), and end-of-file happens when the end of the file is reached.
-
 When the end-of-file is processed, ```getline()``` will return ```false```. Use this to end your input loop.
 
-Then, print the number of elements in the map and then print out the keys and values found in the map. This container keeps the keys sorted. There is also a container available that does not. The unordered map is faster for insertion.
+Then, print the number of elements in the map and then print out the keys and values found in the map. This container keeps the keys sorted. (There is also a container available that does not. The unordered map is faster for insertion.)
 
 There are a number of ways you can iterate over the members of the map. You might use the ```iterator``` approach. The iterator will be of the map's associated pair type.
-
-Sample (input, end-of-file, output):
-
-```
-ddd ddd, 10
-aaa, 20
-zzz, 30
-Size of map: 3
-aaa                 20
-ddd ddd             10
-zzz                 30
-```
 
 # Converting a string to a number safely (exceptions)
 
