@@ -207,7 +207,6 @@ options:
    -h displays help
    -d enables debugging features
    -p port_number ... defaults to 39390
-   -v verbose mode - prints the received payloads
 ```
 
 ## File names
