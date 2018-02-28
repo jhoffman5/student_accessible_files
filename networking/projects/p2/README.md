@@ -30,7 +30,7 @@ upon your work. This is in recognition of your status as advanced CS students an
 desire to teach craftspersonship.
 
 The additional constraint are these:
-* You cannot use an if statement in the code that counts vowels.
+* You cannot use an if statement in the code that counts vowels. A ```switch``` statement qualifies as if statements.
 * You cannot use sets or other template-based data structures provided by C++.
 
 So, code like:
@@ -87,25 +87,30 @@ You are given in executable form, my own client and my own server to test agains
 ## File names
 
 Your client program file name must be ```client.cpp```. Your entire program must be
-implemented in one file. You must use ```defaults.hpp``` as given.
+implemented in one file. 
 
 ## Command line options
 
 You will use getopt to implement command line options. These are:
+
 * ```-h```
 This prints the help text you will find below. Your help text must be exactly as given.
 No differences of any kind are permitted. Exit, after the help text is printed.
+
 * ```-d```
 If present, you can switch on any debugging features you might necessary. I will not
 be testing this. This is only for you. If given, turns on any debugging features you wish to add. 
-This is handy rather than
+   This is handy rather than
 changing the program to turn on and off debugging features and having to recompile.
 In the general case, remember checking the debugging option slows down your code.
+
 * ```-f file_name```
 The project is based on sending a text file to the server and getting information back.
 This is how you specify the name of the file to use. **This option is required**.
+
 * ```-s server_ip_address```
 The default server IP address is 127.0.0.1.
+
 * ```-p port_number```
 The default port number is 5077. If you need to override this, you can specify a 
 different port number in this way. At some point you will need to override the default because only one student can be testing on the same port at a time.
@@ -193,9 +198,11 @@ You must support the following command line options:
 * ```-h```
 Displays help information and exits. See additional information in the description
 of the Client program.
+
 * ```-d```
 If present, you can switch on any debugging features you might necessary. I will not
 be testing this. This is for you.
+
 * ```-p port_number```
 The default port number is 5077. If you need to override this, you can specify a 
 different port number in this way.
@@ -206,14 +213,13 @@ You must match the following output from ```-h```:
 options:
    -h displays help
    -d enables debugging features
-   -p port_number ... defaults to 39390
+   -p port_number ... defaults to 5077
 ```
 
 ## File names
 
 Your server program file name must be ```server.cpp```. Your entire program must be
-implemented in one file. You must use ```structure.hpp``` and ```defaults.hpp``` as
-given.
+implemented in one file.
 
 ## Testing your server
 
@@ -252,6 +258,8 @@ In this program the data type of the length is ```long```.
 In the above example, the client would have sent this:
 
 | 8 bytes containing the value 150 | 150 bytes containing the contents of the file |
+
+Questions for you: htons (16 bits). htonl (32 bits). The lengths are 64 bits. What to do? What to do?
 
 # Allocating and releasing memory
 
