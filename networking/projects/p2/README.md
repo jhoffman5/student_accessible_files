@@ -1,5 +1,9 @@
 # Keep your repos to yourselves
 
+# Relaxed collaboration rules
+
+Feel free to help each other while making your best effort to learn the material in a meaningful way. Don't skate.
+
 # Directories
 
 **You must have a folder named ```networking```. This directory must have mode 700 as 
