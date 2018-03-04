@@ -1,3 +1,26 @@
+# AARCH64 assembly language on an x86 linux machine
+
+If you have an Intel-based Linux machine, here is how you can use it to develop and test AARCH64 assembly language pojects.
+
+Install the following:
+
+```
+sudo apt-get install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+sudo apt-get install qemu qemu-user-static
+```
+
+Then you can assemble and link ```main.s``` with:
+
+```
+aarch64-linux-gnu-gcc main.s
+```
+
+And execute with:
+
+```
+qemu-aarch64-static -L /usr/aarch64-linux-gnu/ ./a.out
+```
+
 # Files for Computer Organization
 
 ## Projects
@@ -9,6 +32,10 @@ p1 is [here](./projects/p1)
 ### p2
 
 Enumerate argv. p2 is [here](./projects/p2)
+
+### p3
+
+Sorted singly linked list. p3 is [here](./projects/p3)
 
 ## Teaching materials
 
