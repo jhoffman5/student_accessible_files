@@ -2,6 +2,10 @@
 
 *Changes will be demarked by CHANGE in italics.*
 
+*CHANGE: The next paragraph is new.*
+
+To get my binaries for testing pull down the student accessible files repo. 
+
 # Directories
 
 **You must have a folder named ```networking```. This directory must have mode 700 as 
