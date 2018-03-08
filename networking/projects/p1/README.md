@@ -1,4 +1,4 @@
-# Revised specification - please reread and look for any changes. CHANGES NOT COMPLETED YET
+# Revised specification - please reread and look for any changes. CHANGES COMPLETE
 
 *Changes will be demarked by CHANGE in italics.*
 
