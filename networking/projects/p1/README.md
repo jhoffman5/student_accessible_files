@@ -178,6 +178,9 @@ size_t payload_length = strlen(login_name) + 1;
 size_t client_datagram_length = sizeof(ClientDatagram) + payload_length;
 ```
 
+Compare this to the datagram length sent from the server back to the client. Datagram length sent from the server to the client in the ```ServerDatagram``` should be the number of total bytes sent by the client to the server. Using the variable names from the example code above, the value of ```datagram_length``` in the ```ServerDatagram``` should be the same as ```client_datagram_length```. 
+
+Remember that both datagram length and payload length are shorts. Shorts must be encoded in network byte ordering. They must be interpreted in host byte ordering.
 
 ## Testing your client
 
@@ -191,9 +194,14 @@ option to turn on and off the debugging output easily.
 
 You must run a server first. It will listen for packets and respond.
 
-You must test your client against your own server. And you must test your client against my server.
-My server will be running at IP address: ```10.250.0.108```. This is why you must support the
-```-s``` option.
+You must test your client against your own server. And you must test your client against my server. You must test:
+* Intel to Intel
+* Intel to ARM
+* ARM to Intel
+* ARM to ARM
+* Your client to my server
+* My client to your server
+* Your client to your server
 
 ## Error checking and exit values
 
@@ -210,6 +218,8 @@ Failure to check for these errors will result in point deductions.
 |cerr << "ERROR Number of bytes sent [" << bytes_sent << "] does not match message size [" << datagram_length << "]" << endl;| 5|
 |cerr << "ERROR failure in packet reception" << endl;|6|
 
+Remember that your client may send packets *so* quickly that with a slower network connection, you run out of buffer space for outgoing packets. This means you might get an error on send - this is *different* from getting the wrong number of bytes back from send.
+
 # Server Program
 
 The server program must be run before your client program. A properly written server
@@ -218,7 +228,7 @@ of persistant connection. Everything the server needs to know to acknowledge a p
 is contained in the received packet (and associated metadata).
 
 Upon receiving a packet from a client, the server attempts to interpret the bytes as
-a ServerDatagram. It will create an ackknowledgement by sending back the same 
+a ServerDatagram. It will create an acknowledgement by sending back the same 
 sequence number contained in the received packet. It also sends back the total 
 number of bytes in the received datagram. In other words, the number of bytes returned
 by recvfrom.
@@ -290,9 +300,11 @@ respectively.
 
 # Sending and receiving must happen in an asynchronous manner
 
+*CHANGE: Made more clear.*
+
 Your client program will be sending as fast as possible. The server will be responding
 as quickly as it can. Both sides have a fairly limited number of packets they can buffer
-before dropping them. Therefore, you must interleave transmission with reception. 
+before dropping them. Therefore, you must interleave transmission with reception on the client. The server can block on reading because it has nothing to do if there is no packet. If there **is** a packet, it replies immediately. Again, the blocking / non-blocking discussion is for the client.
 
 Reading from something normally blocks until there is something to read. This is not acceptable
 in this case. The UDP socket you create will need to be set to non-blocking. Do this with 
