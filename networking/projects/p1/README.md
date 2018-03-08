@@ -1,16 +1,25 @@
+# Revised specification - please reread and look for any changes.
+
+*Changes will be demarked by CHANGE in italics.*
+
 # Directories
 
 **You must have a folder named ```networking```. This directory must have mode 700 as 
-in ```chmod 700 networking```. Inside this folder there must be a directory named P1.
-It is in P1 that you write your project.**
+in ```chmod 700 networking```. Inside this folder there must be a directory named p1.
+It is in p1 that you write your project.**
+
+*CHANGE: Note that the p1 is lower case - this is a change from previous versions of the specification*
 
 **DO NOT MODIFY ANY OF YOUR FILES IN THIS FOLDER AFTER THE DUE DATE**
 
 # PROJECT 1 - UDP
 
+*CHANGE: New explanatory text in next paragraph.*
+
 In this project, you will write a UDP client and server to exchange information. 
-The client will blast UDP datagrams at the server. The server will modify each
-received datagram and return it to the client.
+The client will blast UDP datagrams at the server. The server will extract some information from the
+datagram it receives and send its own datagram back to the client. Each datagram the client sends should
+in theory generate a unique paired response from the server.
 
 UDP is the User Datagram Protocol. It is a best effort protocol which makes no
 guarantee of order of delivery or even delivery at all. For example, the client
@@ -43,78 +52,78 @@ it). I am hoping you will experience datagram loss.
 
 # Adherence to this specification
 
-You must adhere **completely** to this specification in every respect. Down to each
-letter and space, your code must behave **exactly** like mine. Any deviation is 
-considered an error and will result in grade reductions.
+*CHANGE: This section is obsolete as I do not have automatic grading tools for this class.*
 
-Repeat, you have **NO** latitude what-so-ever in what you:
-* name your source code file or files
-* what you output
-* what options you process
-* nothing
+*CHANGE: Instead pay attention to what print out I need to assess correct operation. I will point these out.*
 
 In the event that *my* code does not adhere to this specification, the code supercedes
 the specification. Also, please let me know because clearly I made a mistake that I would like to fix.
 
 # Client program
 
-You have no lattitude with respect to datagram format, options supported, help text 
-and program function.
+*CHANGE: More realistic requirements of conformance are stated.*
+
+You have no lattitude with respect to datagram format or options supported. For example, you must support the ```-h```, ```-s```, and ```-p``` options. You *may* implement a ```-d``` option for your own use. For example, your ```-d``` option might send *one* packet instead of the 262 thousand packets required otherwise.
 
 The client program will send a fixed number of properly initialized ClientDatagram
 packets to the server. In a perfect world the client program will receive back the
-same number of ServerDatagrams. 
+same number of ServerDatagrams.
 
-Each pair (client to server datagram is expecting a matching server to client datagram)
-is associated with one another using a
-```sequence_number``` member. As the client transmits, it memorizes that it sent that
-particular sequence number. As it receives acknowledgements, it removes its memory of
-that sequence numbers.
+*CHANGE: New explanatory information in next paragraph*
 
-If an acknowledgement is received for a sequence number you have no record of or no
-longer have a record of, you should stop the program with specific error values (may
-not be altered).
+Except if you program a ```-d``` option otherwise, you must send a specific number of packets:
 
-After sending a fixed number of datagrams, try receiving 1000 more times to collect
-any straggler responses. Then, print status information (must match the specification)
-which will list the number of packets send and how many packets did not receive an
-acknowledgement. 
+```c++
+#define NUMBER_OF_DATAGRAMS		(1 << 18)
+```
 
-Many error conditions must be checked. They must be handled in specific ways. The
-C runtime call ```exit()``` accepts a parameter which is the return value of your
-whole program. My testing programs will respond to the specific return values of
-your code.
+*CHANGE: Language tweaking in next paragraph.*
 
-## File names
+Each pair of datagrams (client to server datagram is expecting a matching server to client datagram) are associated with one another using a ```sequence_number``` member. As the client transmits, it memorizes that it sent a particular sequence number. As it receives acknowledgements, it removes its memory of that sequence number. An ```STL``` ```set``` is a good candidate.
 
-Your client program file name must be ```client.cpp```. Your entire program must be
-implemented in one file. You must use ```structure.hpp``` and ```defaults.hpp``` as
-given.
+*CHANGE: Clarification in next paragraph - getting a bad sequence number back from server must print a message and keep going*
+
+If an acknowledgement is received for a sequence number you have no record of or no longer have a record of, you must print a message such as ```ERROR unknown sequence number received: -the sequence number-``` and keep going.
+
+*CHANGE: You do not have to keep trying to receive - no harm if you already support this. The section that described this is deleted.*
+
+*CHANGE: Additional explanation added in the next paragraph.*
+
+Many error conditions must be checked. They must be handled in specific ways. The C runtime call ```exit()``` accepts a parameter which is the return value of your whole program. Returning from ```main()``` with a non-zero value accomplishes the same thing. My testing will respond to the specific return values of your code.
+
+## File names and makefile
+
+Your client program file name must be ```client.cpp```. Your entire program must be implemented in one file. You must use ```structure.hpp``` and ```defaults.hpp``` as given.
+
+*CHANGE: This next paragraph is new.*
+
+Please provide a makefile that includes targets for the client, server and a ```clean``` target that deletes an existing built client and server. **BE REALLY CAREFUL WHEN YOU TEST THE clean TARGET - back up your code.** There is no penalty for not having a makefile on this project but you may be penalized on future projects for not having one.
 
 ## Command line options
 
+*CHANGE: many of you did not support options correctly. Consequently note the explanatory additions /changes in this whole section.*
+
 You will use getopt to implement command line options. These are:
+
 * ```-h```
-This prints the help text you will find below. Your help text must be exactly as given.
-No differences of any kind are permitted. Exit, after the help text is printed.
+This prints the help text you will find below. **Exit**, after the help text is printed.
 
 * ```-d```
-If present, you can switch on any debugging features you might necessary. I will not
-be testing this. This is for you.
+If present, you can switch on any debugging features you might necessary. I will not be testing this. This is for you.
 
-   If given, turns on any debugging features you wish to add. This is handy rather than
-changing the program to turn on and off debugging features and having to recompile.
-In the general case, remember checking the debugging option slows down your code.
+   If given, turns on any debugging features you wish to add. This is handy rather than changing the program to turn on and off debugging features and having to recompile. In a general sense, remember checking the debugging option slows down your code so putting a check inside an innermost loop executed a lot should only be done with due consideration.
 
 * ```-s server_ip_address```
-The default server IP address is 127.0.0.1. This address is your machine. To specify
-my machine, use 10.250.0.108.
+The default server IP address is 127.0.0.1. This address is your machine no matter what machine you are on. Addresses you will be interested in: 10.250.0.104 - Bombur, 10.250.0.6 - Bofur, 10.250.0.7 - Bifur, and 10.250.0.108 - Thorin.
+
+  Many people did not support this. Make sure you do. You must support this option correctly.
 
 * ```-p port_number```
-The default port number is 39390. If you need to override this, you can specify a 
-different port number in this way.
+The default port number is 39390. You need to override the default as someone else might be using the default port. You must support this option correctly.
 
-You must match the following output from ```-h```:
+   Many of you printed out the port number *after* converting it to network byte ordering. Please be more observant than this.
+
+You should match the following output from ```-h```:
 
 ```
 ./client options:
@@ -124,81 +133,61 @@ You must match the following output from ```-h```:
 	-p port_number ... defaults to 39390
 ```
 
-When you exit, use return code 0.
+When you exit after printing help, use return code 0.
+
+## More information on getopt
+
+*CHANGE: This is a new section.*
+
+```getopt``` defines an ```extern``` named ```optarg.``` It is a ```char *```. Do not confuse this with a C++ ```string.``` Some of you did, and this caused your support of ```-s``` and ```-p``` to fail.
+
+Your option string must look something like this: ```"s:hp:d"```. The colons after s and p mean there is a required option expected.
+
+Neither ```-s``` nor ```-p``` are *required*. Some of you did this and this is wrong.
 
 ## Client Datagram
 
 The client datagram is the one that the client sends to the server. It is found in
 ```structure.hpp```. You may **not** alter this structure in **any way**.
 
-```
-#pragma once
-/* Reminder - you may not deviate from this in any way. */
+*CHANGE: I am removing the documentation from the include file and putting explanation HERE.*
 
-/* Client Datagram Specification.
-
-sequence_number 	is an unsigned int. You must keep track of every
-sequence_number you have sent. The server will return packets matching 
-each sequence number it receives. The output of your client is a count
-of sequence numbers you have sent but not received back.
-
-payload_length		is an unsigned short. Recall that shorts are 16
-bits in length. This value shall indicate the number of bytes in the
-payload. Notice the payload member is a char - clearly this isn't the
-real payload since the real payload can be more than one byte. The real
-payload is allocated at payload_length so its beginning address is the
-address of the payload member.
-
-payload_length may be 0 to 999.
-
-payload			this member is a placeholder. Use this member
-as a means of finding the first byte of the actual payload. The value
-of the payload your Carthage email name. For example, for me the
-exact structure I would send for sequence number 3 is:
-
-four bytes containing 3.
-two bytes containing 11.
-eleven bytes containing pkivolowitz
-
-This is a total of 19 bytes.
-
-Nineteen? Six plus eleven in 17 not 19. Yet, the right answer is
-19 on x64 and AArch64. Wow. Mind blown. Why?
-
-PAY ATTENTION - many of you will screw managing the memory for 
-the client datagram.
-*/
-
+```c++
 struct ClientDatagram
 {
-	unsigned int sequence_number;
-	unsigned short payload_length;
+	uint32_t sequence_number;
+	uint16_t  payload_length;
 };
-
-/*	Server Datagram Specification
-
-The structure of the datagram returned from the server back to the 
-client in response to the server receiving a client datagram of the
-same sequence number.
-
-datagram_length		is the number of bytes in the entire client datagram.
-Not the payload_length from the client datagram, its entire length. In
-my example, the right value is 19.
-*/
 
 struct ServerDatagram
 {
-	unsigned int sequence_number;
-	unsigned short datagram_length;
+	uint32_t  sequence_number;
+	uint16_t  datagram_length;
 };
 ```
+
+The ```ClientDatagram``` has a payload following the bytes made up the structure above. The payload is your Carthage College login name followed by a null bytes. The null byte is included in the payload length and is to be transmitted to the server.
+
+If your login name is ```jsmith```, the bytes sent are these plus a null terminator. Therefore the payload length must be set to 7. There are six letters in ```jsmith``` plus one more for the null terminator.
+
+To be explicitly clear, payload length is the number of bytes in the payload. A string plus one. This is *different* from the number of bytes you will send to the server. See next for *example* code:
+
+```c++
+char * login_name = (char *) "jsmith";
+size_t payload_length = strlen(login_name) + 1;
+size_t client_datagram_length = sizeof(ClientDatagram) + payload_length;
+```
+
+
+## Testing your client
+
+*CHANGE: Moved the next paragraph into this section. Information was alluded to up top as well.*
+
 You must send exactly ```NUMBER_OF_DATAGRAMS``` packets. This means you must be
 prepared to keep track of the status of that many. However, for debugging purposes
 you might want to send a very small number of packets so that you aren't overwhelmed
 by debugging output. Second hint, you probably want debugging output. Use the ```-d```
 option to turn on and off the debugging output easily.
-
-## Testing your client
 
 You must run a server first. It will listen for packets and respond.
 
