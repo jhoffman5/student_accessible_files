@@ -303,6 +303,7 @@ You have to support the following (I will be adding to this list but I will tell
 * rrnd		**push float random number between previous two stack values - top is max**
 * log		**base 10 log**
 * ln		**natural log**
+* pi		**pushes a value of pi on the stack**
 * aln		**replace top stack value with e^top stack value**
 * e		**pushes the value of e onto the stack**
 * quit		**exits the program**
