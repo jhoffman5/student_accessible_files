@@ -1,0 +1,5 @@
+carthage.edu,161.47.18.99
+microsoft.com,104.40.211.35
+google.com,216.58.192.238
+silhouettefx.com,66.221.90.7
+elasticreality.com,184.168.221.96
