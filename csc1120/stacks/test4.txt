@@ -1,0 +1,10 @@
+rand
+rnd
+rnd
+rnd
+rand
+clear
+10
+20
+rrnd
+quit
