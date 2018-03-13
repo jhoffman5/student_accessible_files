@@ -1,0 +1,9 @@
+-3
+sqrt
+10
+*
+clear
+-3
+abs
+pop
+quit
