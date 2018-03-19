@@ -18,10 +18,10 @@ You don't have to interact with this program. Use two command line arguments to 
 
 Here are some data files:
 
-* [test 1](./queue/test_1.txt)
-* [test 2](./queue/test_2.txt)
-* [test 3](./queue/test_3.txt)
-* [test 4](./queue/test_4.txt)
+* [test 1](./test_1.txt)
+* [test 2](./test_2.txt)
+* [test 3](./test_3.txt)
+* [test 4](./test_4.txt)
 
 These data files contain integers, one per line. Each integer represents the number of minutes each customer will need from some server. As you read the file, start counting the lines from 1 so that the first line is customer 1 (not the usual CS counting from 0). You'll need to remember each customer's number for reporting purposes.
 
