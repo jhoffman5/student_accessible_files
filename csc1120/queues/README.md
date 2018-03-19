@@ -104,7 +104,7 @@ Use a ```queue``` for loading up the customers. I suggest making a queue of a cu
 
 When you've read the whole file (adding to the back of the queue), close it and move on to distributing customers to your initially idle workers. Each time a customer is handed off to a worker, pop it from the front of the queue. It is possible you have more workers than customers. In this case, some workers will remain idle even from the start.
 
-HOw can you manage a worker? Imagine the process of assigning a customer to a worker: You know what time it is right now. The customer can tell you how many minutes of the worker's time the customer needs. The worker, therefore can record the time at which they will be ready for the next customer.
+How can you manage a worker? Imagine the process of assigning a customer to a worker: You know what time it is right now. The customer can tell you how many minutes of the worker's time the customer needs. The worker, therefore can record the time at which they will be ready for the next customer.
 
 Now you're ready to loop over time and workers. For each worker, are they ready for a new customer?
 
