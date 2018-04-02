@@ -154,8 +154,6 @@ Send the file specified with the -f option to the server in a reliable way using
 
 # The server
 
-I busted my buns to the point of painful hands on this to make it easier for you to develop your clients, so give me some props.
-
 Here's a fresh server:
 
 ![Ready server](./server1.png)
