@@ -47,12 +47,12 @@ All shorts should be in network byte order when they hit the wire.
 Here are the client opcodes - note this may be out of date.
 
 ```c++
-#define COP_CODE_NOOP	  0
-#define COP_CODE_START	1
-#define COP_CODE_FINISH	2
-#define COP_CODE_DATA	  3
+#define COP_CODE_NOOP   0
+#define COP_CODE_START  1
+#define COP_CODE_FINISH 2
+#define COP_CODE_DATA   3
 // NOT A REAL OP CODE ...
-#define COP_CODE_BAD	  4
+#define COP_CODE_BAD    4
 ```
 
 Client Op Code | Meaning
@@ -84,12 +84,12 @@ All shorts should be in network byte order when they hit the wire.
 Here are the server opcodes - note this may be out of date.
 
 ```c++
-#define SOP_CODE_NOOP	  0
-#define SOP_RESERVED	  1
-#define	SOP_CODE_ACK	  2
-#define	SOP_CODE_ERROR	3
+#define SOP_CODE_NOOP   0
+#define SOP_RESERVED    1
+#define	SOP_CODE_ACK    2
+#define	SOP_CODE_ERROR  3
 // NOT A REAL OP CODE ...
-#define SOP_CODE_BAD	  4
+#define SOP_CODE_BAD    4
 ```
 
 Server Op Code | Meaning
