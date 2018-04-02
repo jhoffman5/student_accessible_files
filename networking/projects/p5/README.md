@@ -184,6 +184,22 @@ There is a lot here:
 * Notice ```Bytes received: 134 from 127.0.0.1. convo_id: 2 seq_num: 9 op_code: DATA msg_len: 0 flags: 1 windex: 0``` way down the list of sent packets. This is the retransmission. Notice the seq_num is 9 and flags are non-zero.
 * Notice that the server **still** listed line 9 in the proper order. The server implements this part of sliding window on its end.
 
+# Stop-and-wait
+
+START and FINISH packets are sent via stop-and-wait. Before launching a stop-and-wait packet, all other packets should be accounted for. This is applicable to FINISH as no packets should have been transmitted before a START. Stop-and-wait packets are subject to the same timeouts and limit of retransmissions as other packets. They are marked with a window index of 0xFFFF.
+
+# Sliding Window
+
+DATA packets are send using a sliding window algorithm. The window size defaults to DEF_WINDOW_SIZE but can be overridden on the command line. In the general case, if the window size is W, W packets are launched at once. You might want a data structure that records the launch time as well as whether or not the packet is still outstanding. You probably want to keep track of how many times each packet has been retried. 
+
+Packets timeout individually, not in groups of W.
+
+In each group of W, every packet has its own sequence number and also has the index of its place within the W packets sent. 
+
+# seq_num and large files
+
+The way this project has come together, seq_num tracks the line number of the file the client is sending. As seq_num is an unsigned short, don't send files longer than 65536 lines.
+
 # The spec is probably incomplete
 
 This has been a very large undertaking and my hands hurt. Ask questions and check for updates frequently.
