@@ -111,16 +111,16 @@ SOP_FLAG_DUP.
 Here are some other contents of packets.hpp. Note this may be out of date.
 
 ```c++
-#define	PORT_NUMBER     9990
+#define	PORT_NUMBER       9990
 
-#define	SOP_FLAG_DUP	  0x0001
-#define COP_FLAG_RESEND	0x0001
+#define	SOP_FLAG_DUP      0x0001
+#define COP_FLAG_RESEND   0x0001
 
-#define CP_BUFFER_SIZE	122
-#define CP_BUFFER_LIMIT	120
-#define DEF_WINDOW_SIZE	8
-#define	TIMEOUT_SECONDS	1
-#define MAX_RETRIES		  4
+#define CP_BUFFER_SIZE    122
+#define CP_BUFFER_LIMIT   120
+#define DEF_WINDOW_SIZE   8
+#define	TIMEOUT_SECONDS   1
+#define MAX_RETRIES       4
 ```
 
 The default port number is PORT_NUMBER.
