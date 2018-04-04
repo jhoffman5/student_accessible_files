@@ -90,6 +90,8 @@ ID:       Name:                                   State:  Purchases:    Total:
 00000064  CALCULATORS STRENGTH LLC                CA      10            $5,149.54 
 ```
 
+While your formatting might vary slightly from this, the contents of your report must match this content exactly to be correct.
+
 # Data structures
 
 We will use two ```maps``` and one ```multimap``` in this project. 
