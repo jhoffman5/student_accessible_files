@@ -223,7 +223,10 @@ You can define your own program flow because by now you know how.
 I suggest the following:
 1. Ensure the right number of command line arguments.
 2. Use these to load the customer file and the payments file. If these produce any errors, you should say so and quit.
-
+3. Build two maps and a multimap.
+4. Use the map of names to ids to get id's in alphabetical order.
+5. Use the id's to get both company data and all the rows in purchases map (sum these up).
+6. Print company line of report and repeat from 4.
 
 # Data files
 
