@@ -12,6 +12,18 @@ If the the information in both tables were mushed together, then all the address
 
 Notice in the above description both tables store a customer id. We can think of the id as a ```key``` that relates each customer to their purchases. Given a name, you can look up an id. Given the id you can look up all their purchases. Etc.
 
+# Partnership Rules
+
+We are using the following work rules:
+- You may partner with whomever you choose.
+- You may choose not to partner.
+- You may work (share code) with one and only one person (your partner).
+- You may organize help groups in any fashion you wish to discuss, draw pictures, research, etc.
+- You may not use a projector to project code or otherwise share code outside of your partnership.
+- Partners receive the same grade as each other.
+- Only one person in a partnership will submit code.
+- Your code *must* indicate who your partner is at the top of your main source file.
+
 # This project
 
 In this project you will create a database (in memory using associative container data structures). You'll need your csv file reading code from the ```maps``` project and your safe float processing code from the ```stack``` project.
