@@ -1,26 +1,20 @@
 #include <iostream>
 #include <thread>
-#include <mutex>
+#include <atomic>
 #include <vector>
-#include <ctime>
 #include <cstdint>
 #include <getopt.h>
 
 using namespace std;
 
-void Worker(uint64_t c, int tid) {
-	static mutex m;
+atomic<uint64_t> counter{0};
 
-	for (uint64_t i = 0; i < c; i++) {
-		m.lock();
-		cout << "[" << tid << "] " << i << endl;
-		if ((rand() % (1 << 20)) != 0)
-			m.unlock();
-	}
+void Worker(uint64_t c) {
+	for (uint64_t i = 0; i < c; i++)
+		counter++;
 }
 
 int main(int argc, char * argv[]) {
-	srand((unsigned int) time(nullptr));
 	uint64_t max = 1 << 10;
 	int c;
 
@@ -34,14 +28,17 @@ int main(int argc, char * argv[]) {
 
 	cout << "Thread count:   " << thread::hardware_concurrency() << endl;
 	cout << "Max:            " << max << endl;
+	cout << "Expected value: " << max * thread::hardware_concurrency() << endl;
 
 	vector<thread> t(thread::hardware_concurrency());
 
 	for (size_t i = 0; i < t.size(); i++)
-		t.at(i) = thread(Worker, max, i);
+		t.at(i) = thread(Worker, max);
 
 	for (auto & it : t)
 		it.join();
+
+	cout << "Actual value:   " << counter << endl;
 	
 	return 0;
 }

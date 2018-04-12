@@ -31,8 +31,8 @@ int main(int argc, char * argv[]) {
 	for (size_t i = 0; i < t.size(); i++)
 		t.at(i) = thread(Worker, max, i);
 
-	for (size_t i = 0; i < t.size(); i++)
-		t.at(i).join();
-	
+	for (auto & it : t)
+		it.join();
+
 	return 0;
 }
