@@ -1,6 +1,6 @@
 **All repos must be private**
 
-# P3 - tail - print the last TAILLEN lines of any text file
+# P4 - tail - print the last TAILLEN lines of any text file
 
 This project tests your ability to keep track of memory, both allocating and deallocating.
 
