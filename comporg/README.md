@@ -37,6 +37,14 @@ Enumerate argv. p2 is [here](./projects/p2)
 
 Sorted singly linked list. p3 is [here](./projects/p3)
 
+### p4
+
+Tail. p4 is [here](./projects/p4)
+
+### p5
+
+NEON SIMD. p5 is [here](./projects/p5)
+
 ## Teaching materials
 
 ### regs
