@@ -1,3 +1,7 @@
+# This project is NOT being assigned
+
+I have decided against assigning this project. You may attempt this on your own, perhaps over the summer.
+
 # Conway's Game of Life
 
 You are to implement [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) with several constraints imposed for pedagogical reasons.
