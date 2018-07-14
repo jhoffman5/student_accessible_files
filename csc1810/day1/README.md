@@ -37,4 +37,10 @@ Navigate to ```ascii```. ASCII stands for American Standard Code for Information
 
 Don't go into any of the ```.template``` folders. There's nothing that interesting there. Really.
 
+Double click on the workspace file. Each of your projects (that you'll create in the future) will have a workspace file with a name you pick prepended.
 
+![Double Click on Workspace](./img/select_workspace_file.png)
+
+There's a good chance your next screen will be a welcome screen from VSCode. If it is, just close it by clicking on the ```x``` on the tab, not at the upper right of VSCode (that one will close the program). The icon in the dark area at left that looks like multiple pages can be clicked upon to view the files that make up your workspace. If ```main.cpp``` isn't already visible, double click on its name.
+
+![Code](./img/code.png)
