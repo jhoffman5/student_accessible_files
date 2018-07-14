@@ -1,9 +1,0 @@
-23.8
-3
-%
-~
-inv
-4
-pow
-round
-quit
