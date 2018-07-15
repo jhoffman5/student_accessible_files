@@ -53,5 +53,10 @@ Over on the left, if you click on the icon that looks like multiple pages again 
 
 ![No Side](./img/no_side.png)
 
+Clicking on the bug gets you ready run and launch the program. Here's what that looks like:
 
+![No Side](./img/about_to_debug.png)
 
+Push ```F5``` (function key 5) or the green play button at top left. If necessary the program will build (compile). Here is what a successful build looks like
+
+![No Side](./img/successful_build.png)
