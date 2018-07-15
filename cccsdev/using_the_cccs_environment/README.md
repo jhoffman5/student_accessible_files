@@ -45,3 +45,13 @@ Note the bottom set of tabs. The one presently underlined says ```TERMINAL```. T
 
 All keyboard shortcuts inside CCCSDev are the same on Windows and Mac because you aren't using Mac or Windows inside the VM. You are using the VM which is the same on both host platforms.
 
+Next is a picture of what VSCode looks like after hitting ```^J```:
+
+![No Bottom](./img/no_bottom.png)
+
+Over on the left, if you click on the icon that looks like multiple pages again the left side bar will itself minimize. Here is what that looks like:
+
+![No Side](./img/no_side.png)
+
+
+
