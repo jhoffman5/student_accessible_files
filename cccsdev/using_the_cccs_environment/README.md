@@ -1,21 +1,14 @@
-# Let's play
-
-Almost every first look at a programming language starts with a simple program that prints "hello, world". It's a tradition. Here is the original from 1974 by Brian Kernighan, an author of the C programming language:
-
-```c
-#include <stdio.h>
-
-main( )
-{
-        printf("hello, world\n");
-}
-```
-
-We're not going to follow tradition.
-
-Instead, we are going to start day 1 with something more sophisticated and just play with it. 
-
 # Our development environment
+
+The text below refers to using C++.
+
+For a video covering the installation see [here](https://vimeo.com/280080837).
+
+For a video covering using CCCSDev for C++, see [video not made yet]().
+
+For a video covering using CCCSDev for Python, see [video not made yet]().
+
+For a video covering using CCCSDev for R, see [video not make yet]().
 
 After installing our development environment, start the VirtualBox (VB) Manager. Note your windows will differ slightly from the following:
 
