@@ -60,3 +60,10 @@ Clicking on the bug gets you ready run and launch the program. Here's what that 
 Push ```F5``` (function key 5) or the green play button at top left. If necessary the program will build (compile). Here is what a successful build looks like
 
 ![No Side](./img/successful_build.png)
+
+If the build is successful, the program will run. It will create its own console where you can interact with it. Here, the program has completed running and is waiting for you to hit the ```return``` key to close the window.
+
+![Running a Console Application](./img/running_a_console_application.png)
+
+This concludes this tutorial.
+
