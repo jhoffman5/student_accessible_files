@@ -36,4 +36,12 @@ Double click on the workspace file. Each of your projects (that you'll create in
 
 There's a good chance your next screen will be a welcome screen from VSCode. If it is, just close it by clicking on the ```x``` on the tab, not at the upper right of VSCode (that one will close the program). The icon in the dark area at left that looks like multiple pages can be clicked upon to view the files that make up your workspace. If ```main.cpp``` isn't already visible, double click on its name.
 
+
 ![Code](./img/code.png)
+
+If you single click on a file name you are only peeking at it. You can tell when you're peeking at a file by noting that its name in the file tab is in itallics. Peeking at a file means that the tab will switch to another file (that you peek at). This is good for taking quick looks at files. The alternative to peeking is to double click on a file name. Then, its name in the tab will not be in itallics. This tab will remain open.
+
+Note the bottom set of tabs. The one presently underlined says ```TERMINAL```. This is an integrated console. This is one of two places that compilation errors will be found. The preferred tab to view compilation problems is in the tab named ```PROBLEMS```. This entire set of tabs takes up a lot of screen space that you might want to use for editing. You can minimize this window with: ```^J```. This means hold the CONTROL key down at the same time as the J key.
+
+All keyboard shortcuts inside CCCSDev are the same on Windows and Mac because you aren't using Mac or Windows inside the VM. You are using the VM which is the same on both host platforms.
+
