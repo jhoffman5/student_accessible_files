@@ -169,7 +169,7 @@ cout << "a + b: 10" << endl;
 
 # Partner rules
 
-*To be defined by the instructor.*
+**Section 1: No partners - indivial work.**
 
 # What to turn in and how
 
