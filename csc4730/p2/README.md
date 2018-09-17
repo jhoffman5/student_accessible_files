@@ -1,0 +1,76 @@
+# Project 2 Add Guard Page to XV6
+
+## Summary
+
+You’re going to modify how xv6 lays out process memory! And, you must write a user land program to test your work in kernel space. Specifically, you are going to add a guard page in the first 4K of memory (starting at address 0 of process memory). The utility of this is that programs that dereference a null pointer will crash. 
+
+Write the test program first and verify this.
+
+## Current memory layout
+
+XV6 currently lays out process memory like this (starting at address 0 at top):
+
+| Contents |
+| --- |
+| code |
+| heap |
+| stack |
+
+Your job is to make programs start beyond address zero (one page to be exact) so that a dereference of any address 
+in the first page of memory will result in death.
+
+The new layout should be like this:
+
+Like this:
+
+| Contents |
+| --- |
+| guard page |
+| code |
+| heap |
+| stack |
+
+
+where the code starts at the first page boundary, not on the zeroth page.
+
+## Suggested steps
+
+### Make a copy of XV6
+
+Do not defile the virgin.
+
+### Test program
+
+The test program is very short. Declare a pointer, initialize it with NULL (must be in C not C++). Dereference the pointer. Boom. At least in Linux. Try this to verify.
+
+Then, move the source code to the right place so that it is included in XV6. Test this. No crash should occur.
+
+###  Figure out how xv6 sets up a process page tables
+
+Look at how ```exec()``` works to better understand how address spaces get filled with code (loaded from disk) and initialized. That will get you most of the way.
+
+Also look at ```fork()```, in particular the part where the address space of the child is created by copying the address space of the parent. What needs to change (in ```fork()``` itself or a function ```fork()``` calls)?
+
+### Detect and correct any other dependencies
+
+The rest of your task will be completed by looking through the code to figure out where there are checks or assumptions made about the address space. 
+
+To narrow your search: think about what happens when you pass a parameter into the kernel, for example; if passing a pointer, the kernel needs to be very careful with it, to ensure you haven't passed it a bad pointer. How does it do this now? Does this code need to change in order to work in your new version of XV6?
+
+One last hint: you'll have to look at the xv6 makefile as well.
+
+### Fun
+
+As soon as you begin making changes, attempting to test can result in an OS crash.
+
+### What to hand in
+
+Zip your cleaned (if the makefile supports a clean - I haven't checked) XV6 tree and submit it. Note the following:
+
+**You must include a text file in the root of your XV6 tree that contains your name and your partner's name**
+
+Only one partnet submits code. The other partner submits the same text file added to XV6.
+
+### Partner rules
+
+Work in pairs.
