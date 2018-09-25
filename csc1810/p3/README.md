@@ -193,7 +193,7 @@ Hit enter to exit:
 
 ## Partner rules
 
-*Left to the instructor to define*
+All work to be done individually.
 
 ## What to turn in and how
 
@@ -223,13 +223,7 @@ int RangeRand(int min, int max);
 string PickStat();
 ```
 
-You will receive five points off you do calculate the number of potential choices for Race, Alignment or Behavior yourself.
-
-You will receive twenty points off if your code produces any wrong results.
-
-You will receive thirty points off if your code has an infinite loop or crashes.
-
-If you have run afoul of none-of-the-above, you receive 100 percent.
+Of course, more opportunities for reduced score exist.
 
 ## Postscript
 
