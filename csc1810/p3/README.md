@@ -116,7 +116,7 @@ int RangeRand(int min, int max);
 ```
 It will return a random integer whose minimimum value is specified as the first argument. Its maximum value is one less than the second argument. For example ```RangeRand(0, 10)``` returns a random integer from 0 to (including) 9. The mod operator ```%``` is important here.
 
-You must write a function return a "stat". Stats can range between 6 and 18 inclusive. The highest (18) is special. If you roll an 18 (choose 18 at random) the character gets a special massive boost which comes in the form of a number between 0 and 100 inclusive. Because of this, your function returns a string - not a number.
+You must write a function return a "stat". Stats can range between 6 and 18 inclusive. The highest (18) is special. If you roll an 18 (you chose 18 at random) the character gets a special massive boost which comes in the form of a number between 0 and 100 inclusive. Because of this, your function returns a string - not a number.
 
 ```c++
 string PickStat();
