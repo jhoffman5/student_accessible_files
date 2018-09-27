@@ -53,11 +53,7 @@ Also look at ```fork()```, in particular the part where the address space of the
 
 ### Detect and correct any other dependencies
 
-The rest of your task will be completed by looking through the code to figure out where there are checks or assumptions made about the address space. 
-
-To narrow your search: think about what happens when you pass a parameter into the kernel, for example; if passing a pointer, the kernel needs to be very careful with it, to ensure you haven't passed it a bad pointer. How does it do this now? Does this code need to change in order to work in your new version of XV6?
-
-One last hint: you'll have to look at the xv6 makefile as well.
+The rest of your task will be completed by looking through the code to figure out where there are checks or assumptions made about the address space. Hint: you'll have to look at one of the xv6 makefiles.
 
 ### Fun
 
