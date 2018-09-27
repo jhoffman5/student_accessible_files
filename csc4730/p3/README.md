@@ -16,7 +16,7 @@ In ```exec()```, figure out how to move the stack to the last page of user memor
 
 You might think heap growth is all done. But. No.
 
-There is some additional work for growing the heap (and later, growing the stack). **You must ensure that the heap and stack do not collide.** You do this by keeping the two at least one page apart. You will have to check for this during heap growth and stack growth. Start by figuring out ```sys_sbrk()``` in sysproc.c and ```growproc()``` in proc.c. Then when you understand how the heap grows (and how to check for collision with the stack) you will be better able to implement stack growth (and how to check for collision with the heap).
+There is some additional work for growing the heap (and later, growing the stack). **You must ensure that the heap and stack do not collide.** You do this by keeping the two exactly one page apart. You will have to check for this during heap growth and stack growth. Start by figuring out ```sys_sbrk()``` in sysproc.c and ```growproc()``` in proc.c. Then when you understand how the heap grows (and how to check for collision with the stack) you will be better able to implement stack growth (and how to check for collision with the heap).
 
 (Darn! ```sz``` is referred to all over the place. I guess you’ll have to track down every one and see if any of them needs changing.)
 
