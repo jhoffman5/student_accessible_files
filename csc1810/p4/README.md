@@ -165,7 +165,7 @@ Constructors are used to construct the initial contents of the object.
 Let's add the code for the constructor onto the end of ```frozen_food.cpp```.
 
 ```c++
-FrozenFood(string pname, string mname, int qoh)
+FrozenFood::FrozenFood(string pname, string mname, int qoh)
 {
 	product_name = pname;
 	manufacturer_name = mname;
