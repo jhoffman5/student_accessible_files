@@ -91,6 +91,7 @@ All addresses are in hex for both input and output. *All sizes are in decimal*.
 
 | command | argument | argument | meaning | 
 | ------- | ---------- | ---------- | ------- | 
+| # | | | Ignore the line - treat as comment |
 | slaballoc | | | attempts to allocate one slab |
 | slabfree | address | | returns the slab to the available slab list - it is an error if the address does not correspond to an allocated slab |
 | malloc | size | | attempts to allocate count bytes (given in DECIMAL) - if needed count should be rounded up to the next 32 byte boundary | 
