@@ -15,23 +15,17 @@ brew install qemu
 
 Download and unzip to a folder ```https://drive.google.com/open?id=1Y_KPUcv0wIdsBpqeRnS9CpfOKRs4naUb```
 
-Unzip
-
-Make:
+Add this to your ```.bashrc``` in your home directory:
 
 ```
-qemu-system-aarch64 -M virt -m 1024 -cpu cortex-a53 \
-  -kernel vmlinuz-4.9.0-8-arm64 -initrd initrd.img-4.9.0-8-arm64 \
-  -append 'root=/dev/vda2' -drive if=none,file=hda.qcow2,format=qcow2,id=hd \
-  -device virtio-blk-pci,drive=hd  -netdev user,id=mynet,hostfwd=tcp::2222-:22 \
-  -device virtio-net-pci,netdev=mynet -nographic -smp 2
-  ```
+alias ARM='qemu-system-aarch64 -M virt -m 1024 -cpu cortex-a53 -kernel vmlinuz-4.9.0-8-arm64 -initrd initrd.img-4.9.0-8-arm64 -append "root=/dev/vda2" -drive if=none,file=hda.qcow2,format=qcow2,id=hd -device virtio-blk-pci,drive=hd -netdev user,id=mynet,hostfwd=tcp::2222-:22 -device virtio-net-pci,netdev=mynet -nographic -smp 2'
+```
   
-an alias
-  
-Ensure you have ```ssh```
+After you have done this, do ```source .bashrc```.
 
-Run the above in one terminal.
+Ensure you have ```ssh``` by typing same. If the command is not found do ```apt install ssh```.
+
+Run the above in one terminal. ```ARM```
 
 Open another terminal and
 
@@ -53,38 +47,36 @@ or
 su
 apt install qemu
 apt install ssh
-apt install wget
 ```
 
-Download and unzip to a folder ```https://drive.google.com/open?id=1Y_KPUcv0wIdsBpqeRnS9CpfOKRs4naUb```
+Download and unzip to a folder ```https://drive.google.com/open?id=1Y_KPUcv0wIdsBpqeRnS9CpfOKRs4naUb``` as you would normally in Windows. 
 
-Use wget if you want this INSIDE your WSL environment. This is optional.
-
-Make:
+In your Linux subsystem add this to your ```.bashrc``` in your home directory:
 
 ```
-qemu-system-aarch64 -M virt -m 1024 -cpu cortex-a53 \
-  -kernel vmlinuz-4.9.0-8-arm64 -initrd initrd.img-4.9.0-8-arm64 \
-  -append 'root=/dev/vda2' -drive if=none,file=hda.qcow2,format=qcow2,id=hd \
-  -device virtio-blk-pci,drive=hd  -netdev user,id=mynet,hostfwd=tcp::2222-:22 \
-  -device virtio-net-pci,netdev=mynet -nographic -smp 2
-  ```
-  
-an alias
-
-# Making the alias
-
-In your home directory (under WSL on Windows) there is or should be a file called ```.bashrc```. If it isn't there, make it.
-
-Go to bottom.
-
-Add:
-```
-alias ARM=`qemu-system-aarch64 -M virt -m 1024 -cpu cortex-a53 \
-  -kernel vmlinuz-4.9.0-8-arm64 -initrd initrd.img-4.9.0-8-arm64 \
-  -append 'root=/dev/vda2' -drive if=none,file=hda.qcow2,format=qcow2,id=hd \
-  -device virtio-blk-pci,drive=hd  -netdev user,id=mynet,hostfwd=tcp::2222-:22 \
-  -device virtio-net-pci,netdev=mynet -nographic -smp 2`
+alias ARM='qemu-system-aarch64 -M virt -m 1024 -cpu cortex-a53 -kernel vmlinuz-4.9.0-8-arm64 -initrd initrd.img-4.9.0-8-arm64 -append "root=/dev/vda2" -drive if=none,file=hda.qcow2,format=qcow2,id=hd -device virtio-blk-pci,drive=hd -netdev user,id=mynet,hostfwd=tcp::2222-:22 -device virtio-net-pci,netdev=mynet -nographic -smp 2'
 ```
 
-Write - exit. Then ```source .bashrc```
+Write - exit. Then ```source .bashrc``` in your Linux shell.
+
+Ensure you have ```ssh``` by typing in same. The command should be found (as you installed it above).
+
+Run the above in one Linux shell. ```ARM```
+
+Open another terminal and
+
+```ssh user@localhost -p 2222```
+
+# VISUAL STUDIO CODE Integration
+
+Add this to your Visual Studio Code:
+
+```
+https://marketplace.visualstudio.com/items?itemName=lukasz-wronski.ftp-sync
+```
+
+Configure it to use ```user@localhost``` as the user, ```a``` as the password and to use port number ```2222```.
+
+Then, you can edit in Code on Windows or the Mac and every time you save the file it will be ftp'd over to the ARM VM.
+
+
