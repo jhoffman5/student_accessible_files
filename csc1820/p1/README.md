@@ -86,7 +86,7 @@ The required parts of your code include (but are not necessarily limited to):
 
 - checking argc for the "right" value
 
-- getting the filename from ```argv[0]```, opening the file and checking that it opened properly
+- getting the filename from ```argv[1]```, opening the file and checking that it opened properly
 
 - reading the input from filename, skipping blank lines and creating lists of integers found on each line. The lists must be dynamically created
 
