@@ -179,6 +179,14 @@ List 4 has 1 elements and sums to 4
 ==6887== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
 
+# Installing valgrind
+
+```
+> sudo apt install valgrind
+```
+
+Enter "a" as root password. Valgrind will install.
+
 # Partner rules
 
 This project allows you to partner with at most one person. That is, you may do the work yourself or with another.
