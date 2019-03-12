@@ -80,6 +80,14 @@ ID:       Name:                                   State:  Purchases:    Total:
 00000064  CALCULATORS STRENGTH LLC                CA      10            $5,149.54 
 ```
 
+To get lovely columns, use ```iomanip``` found in zybooks chapter 9.3. Specifically, you want ```setw```, ```fixed``` and ```setprecision```.
+
+To get lovely commas in your dollar amounts, do this once:
+
+```c++
+cout.imbue(std::locale(""));
+```
+
 # Data structures
 
 We will use two ```maps``` and one ```multimap``` in this project. 
