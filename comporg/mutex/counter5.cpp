@@ -4,6 +4,7 @@
 #include <vector>
 #include <cstdint>
 #include <getopt.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -18,11 +19,14 @@ int main(int argc, char * argv[]) {
 	uint64_t max = 1 << 10;
 	int c;
 
-	while ((c = getopt(argc, argv, "m:")) != -1) {
+	while ((c = getopt(argc, argv, "m:l")) != -1) {
 		switch (c) {
 			case 'm':
 				max = atoi(optarg);
 				break;
+
+			case 'l':
+				cout << left << setw(16) << "is_lock_free: " << boolalpha << counter.is_lock_free() << endl;
 		}
 	}
 
