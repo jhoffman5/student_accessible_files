@@ -43,10 +43,10 @@ char * levels = " .:-=+*#%@";
 int main()
 {
 	initscr();
-	float tpi = 3.14159265359 * 2;
-	float phase = 0;
-	float theta = 0;
-	float increment = tpi / (float) COLS;
+	double tpi = 3.14159265359 * 2;
+	double phase = 0;
+	double theta = 0;
+	double increment = tpi / (double) COLS;
 	int l;
 	int c;
 
@@ -85,7 +85,7 @@ You are to translate this C version into AARCH64 assembly language.
 
 You *must* use floating point instructions with the exception of the *sin* calculation. The AARCH64 ISA doesn't have a *sin* instruction so instead use the math library version.
 
-You must use floating point registers (S registers and / or D registers) in order to make use of the floating point instruction set. S is single precesion (float). D is double precision (double). Which you use is up to you.
+You must use floating point registers (S registers and / or D registers) in order to make use of the floating point instruction set. S is single precesion (float). D is double precision (double). We're using all doubles in this project.
 
 Correct backing up and restoring of registers are required. 
 

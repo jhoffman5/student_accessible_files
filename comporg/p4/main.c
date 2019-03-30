@@ -7,10 +7,10 @@ char * levels = " .:-=+*#%@";
 int main()
 {
 	initscr();
-	float tpi = 3.14159265359 * 2;
-	float phase = 0;
-	float theta = 0;
-	float increment = tpi / (float) COLS;
+	double tpi = 3.14159265359 * 2;
+	double phase = 0;
+	double theta = 0;
+	double increment = tpi / (double) COLS;
 	int l;
 	int c;
 
