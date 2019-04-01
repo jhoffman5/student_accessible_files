@@ -117,7 +117,7 @@ Each time ```Draw()``` is called, the drop's age increases.
 
 ## ```Drop::TimeToDie()```
 
-Returns ```true``` if ```age``` is or exceeds ```MAXIMUM_AGE```.
+Returns ```true``` if ```age``` is or exceeds ```MAXIMUM_AGE```. [Some of the most beautiful words in cinema](https://en.wikipedia.org/wiki/Tears_in_rain_monologue)
 
 ## ```Storm::Birth()```
 
