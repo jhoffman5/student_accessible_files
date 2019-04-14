@@ -276,11 +276,5 @@ This might be the biggest project in your young careers. Approach it as such wit
 
 Remember, the world's top scientists did the following for years:
 
-![boom](./rocket.mp4)
-
-
-
-
-
-
+![boom](./rocket.gif)
 
