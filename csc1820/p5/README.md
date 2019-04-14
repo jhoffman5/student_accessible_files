@@ -15,14 +15,16 @@ public:
 	int foo;
 };
 
-class Subclass : public Base {
+class Sub : public Base {
 public:
 	Subclass();
 	int bar;
 }
 ```
 
-one can say that Subclass **is a** Base that has what Base has plus an integer named ```bar```. That **is a** is the distinguishing characteristic of derived or subclasses.
+one can say that ```Sub``` **is a** ```Base``` that has what ```Base``` has plus an integer named ```bar```. 
+
+The notion of **is a** is the distinguishing characteristic differentiating derived classes from subclasses.
 
 # Curses
 
@@ -60,13 +62,15 @@ Due to double buffering, no screen changes take place until you called the ```re
 #include <thread>
 #include <chrono>
 
+using namespace std;
+
 int main()
 {
 	initscr();
 	erase();
 	box(stdscr, 0, 0);
 	refresh();
-	std::this_thread::sleep_for(std::chrono::seconds(5));
+	this_thread::sleep_for(chrono::seconds(5));
 	endwin();
 	return 0;
 }
@@ -86,8 +90,8 @@ The following program puts ```hello world``` centered on the screen.
 
 ```c++
 #include <curses.h>
-#include <thread>
 #include <string>
+#include <thread>
 #include <chrono>
 
 using namespace std;
@@ -102,7 +106,7 @@ int main()
         mvaddstr(LINES / 2, (COLS - hw.size()) / 2, hw.c_str());
 
         refresh();
-        std::this_thread::sleep_for(std::chrono::seconds(5));
+        this_thread::sleep_for(chrono::seconds(5));
         endwin();
         return 0;
 }
@@ -124,112 +128,52 @@ Here is a complete curses manual:
 
 [curses manual](https://invisible-island.net/ncurses/man/ncurses.3x.html)
 
+## sleep_for()
+
+There are two interesting include files shown above (and next):
+
+```c++
+#include <thread>
+#include <chrono>
+```
+
+A ```thread``` is a something that is executing right now. We don't need to know the details for now. 
+
+The include file ```thread``` gives you access to ```this_thread```. ```this_thread``` is your executing program. It's "you."
+
+One of the things you can ask of your own thread is to have it pause for a specified amount of time. This is the purpose of ```sleep_for```. ```sleep_for``` must be told how long to pause. This is the purpose of ```chrono```.
+
+Without the call to ```sleep_for``` in the main loop, the animation may be to fast to see let alone appreciate.
+
+## chrono
+
+The ```chrono``` include file gives you access to a means of specifying time periods in a way that is independent of your operating system and is easier to understand that previous methods. Time periods are interpreted as being in the units of time that you choose. Each of the following specifies 1 second:
+
+```c++
+chrono::seconds(1);
+chrono::milliseconds(1000)
+chrono::microseconds(1000000)
+```
+
 # This project - retro fireworks
 
-In this project you will create a base class called ```Rocket``` which knows how to fly and draw a simple rocket. Then, you will define a fixed set of defined subclasses that specialize ```Rocket``` to create different behaviors.
+In this project you will create a base class called ```Rocket``` which knows how to fly and draw a simple rocket. Then, you will define a set of defined subclasses that specialize ```Rocket``` to create different behaviors.
 
-## The classes
+## main()
 
-Then, you will create subclasses of ```Rocket``` which draw more interesting fireworks. The *is a* relationship is readily apparent. A ```Streamer``` is a ```Rocket``` that exploded with a circular pattern.
+Please see [here](./main.md) for a description of the main program file (given to you).
 
-Here is the Rocket class (you must use it verbatim):
+## Fleet class
 
-```c++
-class Rocket
-{
-  public:
-	Rocket();
-	virtual ~Rocket();
+Please see [here](./fleet.md) for a description of the Fleet class. You must implement this class.
 
-	void SetImpulse(float x, float y);
-	void SetTriggerAge(int i);
-	void SetAgeLimit(int i);
-	void SetPosition(Rocket &other);
-	void SetForce(float x, float y);
-	virtual void Draw();
-	virtual void Step();
+## Rocket class
 
-	int GetAge();
-	bool IsAlive();
-	bool IsTriggered();
+Please see [here](./rocket.md) for a description of the Rocket class. You must implement this class.
 
-	static void SetGravity(float g);
-	static void SetLogFile(std::ofstream *log_file);
-	static void SetVector(std::vector<Rocket *> *);
+## Derived classes
 
-	virtual void Trigger();
-
-  protected:
-	int age;
-	int age_limit;
-	int trigger_age;
-
-	// Nameless structs - see specification
-	struct
-	{
-		float x, y;
-	} position;
-
-	struct
-	{
-		float x, y;
-	} force;
-
-	static float gravity;
-	static std::ofstream *log_file;
-	static std::vector<Rocket *> *rockets;
-};
-```
-
-There are a number of interesting things in this class. Notice the comment about *nameless structs*? This is a way of grouping together related members in a convenient and easy fashion. Example:
-
-```c++
-Rocket r;
-r.force.x = 0.0;
-r.position.y = 22.0;
-```
-
-There are some data members marked ```static```. This means that for all instances of ```Rocket``` there are only one of these variables. All instances share them.
-
-A static data member is declared in the class but space has to be reserved for them in your code. In a code file called, for example, ```rocket.cpp``` the following lines must appear in the global scope.
-
-```
-float Rocket::gravity = -1.0;
-ofstream *Rocket::log_file = nullptr;
-vector<Rocket *> *Rocket::rockets = nullptr;
-```
-
-Notice there are *setter* methods for giving non-default values to the static data members. These methods are also marked ```static``` though technically, there is no requirement of this.
-
-The ```virtual``` methods provide for the specialized characteristics of the subclasses you will write.
-
-See below for a specification of the various methods you have to write.
-
-After writing the base class (and completely testing it), you will write several specializations. Here are two:
-
-```c++
-class Streamer : public Rocket
-{
-  public:
-	~Streamer();
-	void Draw();
-
-	static std::vector<std::pair<float, float>> v1;
-	virtual void Trigger();
-};
-
-class DoubleStreamer : public Streamer
-{
-  public:
-	virtual void Trigger();
-};
-```
-
-Here, ```Streamer``` is a specialization of ```Rocket``` and ```DoubleStreamer``` is a specialization of ```Streamer```. Other types of fireworks also derive from ```Rocket``` like so:
-
-![Classes](./Rocket.png)
-
-Notice the arrows flow upward towards the base class.
+Please see [here](./derived.md) for a description of the classes derived from Rocket. You must implement these classes.
 
 ## Learning a little more about Class Access Modifiers
 
@@ -289,124 +233,9 @@ class D : private A    // 'private' is default for classes
     // z is not accessible from D
 };
 ```
-
-## More detailed ```Rocket``` specification
-
-Methods:
-
-| Method | Parameters | Comment |
-| ------ | ---------- | ------- |
-| Constructor | n/a | Initialize data memebers. |
-| Destructor | n/a | Does not need to do anything. |
-| SetTriggerAge | age | The trigger age is the number of steps before something changes - for example, a rocket explodes to produce a custom distribution of new particles. |
-| SetAgeLimit | age | After *age* number of steps, the particle is eliminated. This is how particles are removed from the system. |
-| SetPosition | x, y | Set the initial position of a rocket. Typically y is zero. x ranges between zero and COLS |
-| SetPosition | Rocket & | Set the initial position of a rocket from the current position of another rocket - useful in ```Trigger()``` |
-| SetForce | x, y | Sets the force of a rocket. For an initial value, typically x might range between -0.5 and 0.5. Typically y might range between 3.5 and 4.5. |
-| Draw | n/a | Draws the rocket at its current location |
-| Step | n/a | Applies the current value of force to update the current position. The current force is then mediated by gravity |
-| Trigger | n/a | Called to cause a change in the rocket. For example, blossom into a palm tree |
-| GetAge | n/a | Returns the current age of the rocket. ```Step()``` increments age by one |
-| IsAlive | n/a | Returns true if the age of the rocket is less than the age limit set for the rocket |
-| IsTriggered | n/a | returns true if the age of the rocket is greater than or equal to the trigger age |
-| SetGravity | g | **STATIC** method sets the float value g to be gravity. Gravity is a negative number added to the y component of the rocket's force during each ```Step()```. The reference implementation uses a gravity of -0.2 |
-| SetLogFile | ofstream * | **STATIC method*** is for you for debugging purposes. Once you enable curses, you cannot print to the screen any more. Use this feature if you want a means of seeing debugging output |
-| SetVector | vector<Rocket *> * | **STATIC method** Rockets may spawn other rockets when triggered. The argument gives your Rocket class access to the vector of Rockets you maintain in your main loop |
-
-Data members:
-
-| Member | Comment |
-| ------ | ------- |
-| age | Initially zero, age is incremented every time ```Step()``` is called |
-| age_limit | The age at which the rocket should be removed from the vector of rockets |
-| trigger_age | The age at which the rocket should be triggered |
-| position | The rocket's current coordinates - see *About coordinates* |
-| force | the rocket's current force. This value is applied to position during each ```Step()``` and then reduced by gravity |
-
-# About coordinates
-
-For the purposes of computation, assume that the ground is at y equals 0. However, for drawing, line zero is the top of the screen. When drawing, simply invert the y coordinate of the rocket with something like:
-
-```c++
-LINES - position.y```
-```
-
-# Required specializations (derived classes)
-
-## Palm tree
-
-```c++
-class PalmTree : public Rocket
-{
-  public:
-	~PalmTree();
-
-	static std::vector<std::pair<float, float>> v1;
-	virtual void Trigger();
-};
-```
-
-A Palm Tree rocket spawns 8 ```Sparklers``` in a horizontal arrangement when triggered.
-
-The *static* ```vector``` of float pairs is used to store the force offsets to be applied to each of the 8 spawned ```Sparklers```. The force should be left or right and up a little.
-
-The spawning is implemented by ```Trigger()```.
-
-The Palm Tree inherits the ```Draw()``` method from ```Rocket```.
-
-## Sparkler
-
-```c++
-class Sparkler : public Rocket
-{
-  public:
-	void Draw();
-};
-```
-
-The ```Sparkler``` ```Draw()``` alternates the rendering of the rocket between '+' and 'x' based on age.
-
-## Streamer
-
-```c++
-class Streamer : public Rocket
-{
-  public:
-	~Streamer();
-	void Draw();
-
-	static std::vector<std::pair<float, float>> v1;
-	virtual void Trigger();
-};
-```
-
-The ```Streamer``` spawns 8 ```Sparklers``` in a circular pattern. The square root of two is your friend. Initialize the *static* ```vector``` v1 with the forces to be applied. 
-
-```Trigger()``` causes the spawning to take place.
-
-## DoubleStreamer
-
-```c++
-class DoubleStreamer : public Streamer
-{
-  public:
-	virtual void Trigger();
-};
-```
-
-The ```DoubleStreamer``` inherits from ```Streamer```. It differs only in how many ```Sparklers``` are spawned (and with what force). The ```DoubleStreamer``` spawns eight more ```Sparklers``` than ```Streamer``` in the same directions but with half as much force. Think about this paragraph and the next requirement. What does this mean?
-
-**There is a special requirement in DoubleStreamer:**
-
-The ```DoubleStreamer``` ```Trigger()``` **must not** duplicate the work of the ```Trigger()``` in ```Streamer```. Instead, it must leverage the work that can be done by its *superclass*. Notice there is not vector of forces in ```DoubleStreamer```. A ```DoubleStreamer``` can use the same vector as defined in ```Streamer```.
-
-## Initializing the force vectors
-
-Recalling that the force vectors described above are **static**, you might be wondering how to initialize them. Hint - they must be initialized only once. Where you do that is up to you. Ask yourself, how can you know if a vector has already been initialized? The answer is plain.
-
 ## Setting the initial up force (argc / argv)
 
-Use a default up force of 4 +/- 0.5. If ```argc``` is greater than one, attempt to convert it to a float and use it as the initial up force. Being able to adjust the up force is needed to allow for console windows that are tall or not. An up force that is too large will launch rockets above the top of the window. No fun in that. 
+Use a default up force of 4 +/- 0.5. If ```argc``` is greater than one, attempt to convert ```argv[1]``` to a float and use it as the initial up force. Being able to adjust the up force is needed to allow for console windows that are tall or not. An up force that is too large will launch rockets above the top of the window. No fun in that.
 
 # Exiting the program
 
@@ -418,19 +247,15 @@ Notice the use of pointers to class instances. You must not leak memory. This pr
 
 # Problems iterating over the vector of rockets
 
-Your main loop will iterate over the existing rockets. But, more rockets may be added while you're doing this (because of age-related triggering). You must not iterate over the new rockets.
+Your main loop will iterate over the existing rockets. But, more rockets may be added while you're doing this (because of age-related triggering). You must not iterate over the new rockets. This is the reason for the vector of Rocket pointers being passed around. New particles are appended to the ```Fleet``` vector of Rocket pointers **after** you've completed iterating over that vector.
 
-Also, when you cull the rocket vector of aged-out rockets by calling erase you must do so carefully lest you lose your place in the vector.
+Also, when you cull the rocket vector of aged-out rockets by calling erase you must do so carefully lest you lose your place in the vector. A very specific hint is to use ```iterators``` and the return value of ```erase()```. 
 
-Next find some specific hints.
+# Suggestion
 
-## Triggering
+Delay writing and testing any derived classes until your Rocket class is working perfectly.
 
-A rocket that gets triggered causes more rockets to be added to the vector of rockets. This could be a problem. There are a number of ways to solve this. For example, you can iterate over a copy of the rocket vector safely since it would contain pointers to the real rockets. Or, you could store how many rockets are in the vector before you start your loop and loop only that many times. This is safe because the new rockets caused by triggers are after all the original rockets (assuming you are using ```push_back()```. There are other ways to solve the problem of iterating over a growing vector so that you are not including the newly birthed rockets.
-
-## Culling the vector of rockets
-
-Rockets age after each call to ```Step()```. All of your rockets must ```Step()``` for one call to the curses function ```refresh()```. After this, you must loop through the vector of rockets culling the ones that have reached ```age_limit```. Erasing from a container that you are also iterating over can be tricky. Be careful lest you experience a "random crash." A hint you should take seriously is to look at the *return value* of ```erase()``` in ```vector```.
+Then write one derived class, not all of them. The birthing code can be modified later to handle choosing from all of them later. Until all your subclasses are tested, just launch only one type of rocket (the one you're testing).
 
 # Partnership rules
 
@@ -448,6 +273,11 @@ Five points additionally will be award to the *one* project that has the most in
 # Note
 
 This might be the biggest project in your young careers. Approach it as such with respect and trepidation. We will implement small parts of this together but do not believe you can coast - there is much work here. Fun work. The best kind.
+
+Remember, the world's top scientists did the following for years:
+
+![boom](./rocket.mp4)
+
 
 
 

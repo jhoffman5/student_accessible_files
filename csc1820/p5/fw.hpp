@@ -3,6 +3,9 @@
 #include <vector>
 #include <fstream>
 
+/*	frand() is defined in main.cpp.
+*/
+
 float frand();
 
 class Rocket
@@ -17,16 +20,14 @@ class Rocket
 	void SetPosition(float x, float y);
 	void SetForce(float x, float y);
 	virtual void Draw();
-	virtual void Step();
-	virtual void Trigger();
+	virtual void Step(std::vector<Rocket *> & v);
+	virtual void Trigger(std::vector<Rocket *> & v);
 
 	int GetAge();
 	bool IsAlive();
 	bool IsTriggered();
 
 	static void SetGravity(float g);
-	static void SetLogFile(std::ofstream *log_file);
-	static void SetVector(std::vector<Rocket *> *);
 
   protected:
 	int age;
@@ -44,6 +45,4 @@ class Rocket
 	} force;
 
 	static float gravity;
-	static std::ofstream *log_file;
-	static std::vector<Rocket *> *rockets;
 };
