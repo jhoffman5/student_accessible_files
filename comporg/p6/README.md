@@ -83,19 +83,15 @@ The bit map says block *n* is free but you found it referenced by a valid inode.
 
 ## Multiply allocated block
 
-An allocatted block is referenced by more than one inode, or more than once by the same inode.
+An allocated block is referenced by more than one inode, or more than once by the same inode.
 
 ## Missing inode
 
-An inode number is found in a valid directory but is not marked as allocated.
+An inode number is found in a valid directory but is not marked as allocated in the inode array.
 
 ## Unused inode
 
-An inode marked valid is not refered to by a directory.
-
-## Unlinked directory
-
-A directory is not referred to by another directory.
+An inode marked valid is not referred to by a directory.
 
 ## / problems
 
@@ -125,11 +121,11 @@ Inode 1 is the root directory. No other directory can list itself (i.e. .) as in
 
 ## Directory link counts
 
-The link count in a directory inode is not the number of directories it contains. 
+The link count in a directory inode is not the number of directories it contains. Note this is really covered by the next error.
 
 ## File link count
 
-The link count of a file is not the number of times the file is referred to by a dorectory.
+The link count of a file is not the number of times the file is referred to by a directory.
 
 ## File size
 
@@ -139,9 +135,17 @@ A file's size in bytes cannot exceed the maximum file size (figure out what this
 
 File names with non printable ASCII characters should be flagged.
 
+# Platform and language
+
+All work must be in C and / or C++ designed for Linux and compilable by ```g++ -std=c++11```.
+
+# Usage
+
+Your program should check the validity of ```argv[1]```. It is an error should the argument not be given or is bogus.
+
 # All error messages 
 
-Should be as specifc as possible. 
+Should be as specifc as possible listing block or inode numbers.
 
 # Partner rules
 
